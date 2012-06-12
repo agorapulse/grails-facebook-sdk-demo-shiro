@@ -1,4 +1,4 @@
-import grails.plugins.facebooksdk.FacebookAppService
+import grails.plugin.facebooksdk.FacebookAppService
 import org.apache.shiro.authc.IncorrectCredentialsException
 import org.apache.shiro.authc.SimpleAccount
 import org.apache.shiro.authz.permission.WildcardPermissionResolver

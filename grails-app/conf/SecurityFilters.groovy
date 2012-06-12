@@ -1,4 +1,4 @@
-import grails.plugins.facebooksdk.FacebookAppService
+import grails.plugin.facebooksdk.FacebookAppService
 import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
