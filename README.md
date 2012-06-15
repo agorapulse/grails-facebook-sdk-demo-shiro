@@ -1,21 +1,21 @@
-Facebook SDK Grails - Shiro Demo
+Grails Facebook SDK - Shiro Demo
 ================================
 
-Sample app to demo how to integrate [Shiro Grails plugin](https://github.com/pledbrook/grails-shiro) with [Facebook SDK Grails plugin](https://github.com/benorama/facebook-sdk-grails-plugin).
+Sample app to demo how to integrate [Grails Shiro plugin](https://github.com/pledbrook/grails-shiro) with [Grails Facebook SDK plugin](https://github.com/benorama/grails-facebook-sdk).
 
 * To get more info on Apache Shiro : <http://shiro.apache.org/>
 
 * To get more info on Shiro Grails Plugin : <https://github.com/pledbrook/grails-shiro>
 
-* To get more info on Facebook SDK Grails Plugin : <https://github.com/benorama/facebook-sdk-grails-plugin>
+* To get more info on Facebook SDK Grails Plugin : <https://github.com/benorama/grails-facebook-sdk>
 
 
 ## Getting started
 
-**1- Download or clone the [plugin GitHub project](https://github.com/benorama/facebook-sdk-grails-demo-shiro).**
+**1- Download or clone the [plugin GitHub project](https://github.com/benorama/grails-facebook-sdk-demo-shiro).**
 
 ```groovy
-git clone https://benorama@github.com/benorama/facebook-sdk-grails-demo-shiro.git
+git clone https://benorama@github.com/benorama/grails-facebook-sdk-demo-shiro.git
 ```
 
 **2- Create a Facebook app on [Facebook Developers](https://developers.facebook.com/apps), in order to get your own app ID and app secret.**
