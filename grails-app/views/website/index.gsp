@@ -6,9 +6,11 @@
 </head>
 <body>
 
+<g:render template="/header" model="${[facebookContext: facebookContext]}" />
+
 <div class="row">
 	<div class="span10">
-		<g:if test="${!facebook.app.id}">
+		<g:if test="${!facebookContext.app.id}">
 			<g:render template="/configError" />
 		</g:if>
         <g:render template="/nav" />

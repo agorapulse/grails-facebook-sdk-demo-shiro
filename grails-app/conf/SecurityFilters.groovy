@@ -1,19 +1,18 @@
-import grails.plugin.facebooksdk.FacebookAppService
+import grails.plugin.facebooksdk.FacebookContext
 import org.apache.shiro.SecurityUtils
-import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
 import org.apache.shiro.web.util.WebUtils
 
 class SecurityFilters {
 
-    FacebookAppService facebookAppService
+    FacebookContext facebookContextProxy
 
     def filters = {
         all(uri: "/**") {
             before = {
                 // Sign in if required
                 def subject = SecurityUtils.subject
-                def facebookId = facebookAppService.userId
+                long facebookId = facebookContextProxy.user.id
                 log.info "Check facebook authentication facebookId=$facebookId."
                 if (!subject.authenticated && facebookId) {
                     // Login user
@@ -28,7 +27,7 @@ class SecurityFilters {
                     //}
                 } else if (subject.authenticated && !facebookId) {
                     // Logout user
-                    facebookAppService.invalidateUser()
+                    facebookContextProxy.user.invalidate()
                     subject.logout()
                 } else if (subject.authenticated) {
                     log.info "User authenticated"

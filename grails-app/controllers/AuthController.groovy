@@ -1,15 +1,19 @@
 import org.apache.shiro.SecurityUtils
+import grails.plugin.facebooksdk.FacebookContext
 
 class AuthController {
 
-    def facebookAppService
+    FacebookContext facebookContext
 
-    def index() { redirect(action: "login", params: params) }
+    def index() {
+        redirect(action: "login", params: params)
+    }
 
     def login() {
-        String loginUrl = facebookAppService.getLoginURL(scope:request.facebook.app.permissions)
-        return [ loginUrl:loginUrl,
-                 targetUri: params.targetUri ]
+        [
+                facebookContext: facebookContext,
+                targetUri: params.targetUri
+        ]
     }
 
     def logout() {

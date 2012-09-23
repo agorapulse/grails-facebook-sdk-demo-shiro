@@ -1,15 +1,16 @@
-import grails.plugin.facebooksdk.FacebookAppService
+
+import grails.plugin.facebooksdk.FacebookContext
 import org.apache.shiro.authc.IncorrectCredentialsException
 import org.apache.shiro.authc.SimpleAccount
-import org.apache.shiro.authz.permission.WildcardPermissionResolver
 import org.apache.shiro.authz.Permission
+import org.apache.shiro.authz.permission.WildcardPermissionResolver
 import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class FacebookRealm {
     static authTokenClass = org.apache.shiro.authc.UsernamePasswordToken
 
     // DEACTIVATED Service injection in realm generates a bug in resource plugin...
-    //FacebookAppService facebookAppService
+    //FacebookContext facebookContext
     //UserService userService
     GrailsApplication grailsApplication
     WildcardPermissionResolver shiroPermissionResolver
@@ -21,8 +22,8 @@ class FacebookRealm {
         if (authToken.username == 'facebook') {
             // Facebook authentication
             // WORKAROUND for service injection bug
-            FacebookAppService facebookAppService = grailsApplication.mainContext.getBean('facebookAppService')
-            Long facebookId = facebookAppService.userId
+            FacebookContext facebookContext = grailsApplication.mainContext.getBean('facebookContext') as FacebookContext
+            long facebookId = facebookContext.user.id
             if (!facebookId) {
                 log.info "Invalid credentials (Facebook realm)"
                 throw new IncorrectCredentialsException("Invalid signed request")
@@ -39,8 +40,8 @@ class FacebookRealm {
         return account
     }
 
-    Boolean hasRole(principal, roleName) {
-        Integer roleCount = User.createCriteria().count() {
+    boolean hasRole(principal, roleName) {
+        int roleCount = User.createCriteria().count() {
             roles {
                 eq('name', roleName)
             }
@@ -50,8 +51,8 @@ class FacebookRealm {
         return roleCount > 0
     }
 
-    Boolean hasAllRoles(principal, roles) {
-        Integer roleCount = User.createCriteria().count() {
+    boolean hasAllRoles(principal, roles) {
+        int roleCount = User.createCriteria().count() {
             roles {
                 'in'('name', roles)
             }
@@ -61,7 +62,7 @@ class FacebookRealm {
         return roleCount == roles.size()
     }
 
-    Boolean isPermitted(principal, requiredPermission) {
+    boolean isPermitted(principal, requiredPermission) {
         // First find all the permissions that the user has that match
         // the required permission's type and project code.
         User user = User.findByFacebookId(principal)

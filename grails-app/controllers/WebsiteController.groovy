@@ -1,25 +1,22 @@
+import grails.plugin.facebooksdk.FacebookContext
+
 class WebsiteController {
 	
-	def facebookAppService
+	FacebookContext facebookContext
 
-	def beforeInterceptor = [action:this.&before]
-	def afterInterceptor = [action:this.&after]
-
-	def before() {
-		log.info("START ${actionUri} with params=${params}")
-        request.logoutUrl = facebookAppService.getLogoutURL(next:createLink(action:'logout', absolute:true))
-	}
-
-	def after(model) {
-		log.info("END ${actionUri}")
-	}
+	def beforeInterceptor = {
+        log.info "START ${actionUri} with params=${params}"
+    }
+	def afterInterceptor = { model ->
+        log.info "END ${actionUri}"
+    }
 
     def index() {
-
+        [facebookContext: facebookContext]
     }
 
 	def secured() {
-
+        [facebookContext: facebookContext]
 	}
 
 }
