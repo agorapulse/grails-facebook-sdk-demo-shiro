@@ -24,10 +24,10 @@ grails.project.dependency.resolution = {
     plugins {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.0"
-        runtime ":resources:1.1.6"
+        runtime ":resources:1.2"
         runtime ":fbootstrapp:0.1.1"
 
-        runtime ':facebook-sdk:0.4.3'
+        runtime ':facebook-sdk:0.4.12'
         runtime ":shiro:1.1.4"
 
         build ":tomcat:$grailsVersion"

@@ -8,6 +8,34 @@ grails.config.locations = [ "file:${userHome}/.grails/${appName}-config.properti
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
+// Facebook SDK plugin
+grails {
+    plugin {
+        facebooksdk {
+            // Single App config
+            app = [
+                    id: 153479331507925,
+                    secret: '8fe5bdccb6654de1d20930ed57acf564',
+                    permissions: ['email']
+            ]
+            // Multiple apps config
+            /*
+            apps = [
+                [
+                    id: 0,
+                    permissions: 'email',
+                    secret: ''
+                ],
+                [
+                    id: 1,
+                    permissions: 'email',
+                    secret: ''
+                ],
+            ]
+            */
+        }
+    }
+}
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
@@ -111,9 +139,4 @@ grails.resources.modules = {
 }
 
 // FBootstrapp plugin configuration
-grails.plugins.fboostrapp.fixtaglib = true
-
-// Facebook sdk plugin
-grails.plugin.facebooksdk.appId = 0
-grails.plugin.facebooksdk.appPermissions = "email"
-grails.plugin.facebooksdk.appSecret = ""
+grails.plugins.fbootstrapp.fixtaglib = true
